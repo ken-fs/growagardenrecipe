@@ -1,15 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export function BackButton() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   const handleClick = () => {
     if (typeof window !== "undefined") {
       // 尝试返回到之前的位置

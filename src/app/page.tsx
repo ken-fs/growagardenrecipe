@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { RecipeLink } from "@/components/RecipeLink";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";

@@ -1,7 +1,6 @@
 import React from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Heart, Users, Award } from "lucide-react";
 
 export default function AboutPage() {
@@ -48,8 +47,8 @@ export default function AboutPage() {
             of cooking recipes for the Grow a Garden game. Our mission is to
             help players discover every possible recipe combination, complete
             with rarity information, ingredient requirements, and cooking times.
-            We're passionate about gaming, pixel art, and helping players master
-            the cooking system in Grow a Garden.
+            We&apos;re passionate about gaming, pixel art, and helping players
+            master the cooking system in Grow a Garden.
           </p>
         </div>
 
@@ -76,7 +75,7 @@ export default function AboutPage() {
               Pixel Art UI
             </h3>
             <p className="text-green-100 text-sm font-mono">
-              Beautiful pixel-art style interface that matches the game's
+              Beautiful pixel-art style interface that matches the game&apos;s
               aesthetic with instant search and fully responsive design.
             </p>
           </div>
@@ -116,11 +115,11 @@ export default function AboutPage() {
               ensure every recipe is accurate and up-to-date.
             </p>
             <p>
-              Today, we're proud to serve the Grow a Garden community with the
-              most complete and accurate recipe database available. Whether
-              you're a new player learning the cooking system or a veteran
-              looking for rare recipes, we're here to help you master the art of
-              cooking in Grow a Garden.
+              Today, we&apos;re proud to serve the Grow a Garden community with
+              the most complete and accurate recipe database available. Whether
+              you&apos;re a new player learning the cooking system or a veteran
+              looking for rare recipes, we&apos;re here to help you master the
+              art of cooking in Grow a Garden.
             </p>
           </div>
         </div>
@@ -136,9 +135,9 @@ export default function AboutPage() {
                 Found a Missing Recipe?
               </h3>
               <p className="text-green-100 mb-4 font-mono">
-                We're always updating our database with new recipes. If you've
-                discovered a recipe that's not in our database, we'd love to
-                hear from you!
+                We&apos;re always updating our database with new recipes. If
+                you&apos;ve discovered a recipe that&apos;s not in our database,
+                we&apos;d love to hear from you!
               </p>
             </div>
             <div>
