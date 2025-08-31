@@ -33,18 +33,6 @@ export const Header: React.FC = () => {
               Home
             </Link>
             <Link
-              href="/recipes"
-              className="text-gray-700 hover:text-green-600 transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-800 px-3 py-1"
-            >
-              All Recipes
-            </Link>
-            <Link
-              href="/categories"
-              className="text-gray-700 hover:text-green-600 transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-800 px-3 py-1"
-            >
-              Categories
-            </Link>
-            <Link
               href="/about"
               className="text-gray-700 hover:text-green-600 transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-800 px-3 py-1"
             >
@@ -76,20 +64,6 @@ export const Header: React.FC = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
-              </Link>
-              <Link
-                href="/recipes"
-                className="block px-3 py-2 text-gray-700 hover:text-green-600 transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-800"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                All Recipes
-              </Link>
-              <Link
-                href="/categories"
-                className="block px-3 py-2 text-gray-700 hover:text-green-600 transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-800"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Categories
               </Link>
               <Link
                 href="/about"

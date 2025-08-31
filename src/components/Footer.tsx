@@ -63,22 +63,6 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/recipes"
-                  className="text-gray-400 hover:text-white transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-600 px-2 py-1 inline-block"
-                >
-                  All Recipes
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/categories"
-                  className="text-gray-400 hover:text-white transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-600 px-2 py-1 inline-block"
-                >
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/about"
                   className="text-gray-400 hover:text-white transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-600 px-2 py-1 inline-block"
                 >
@@ -96,41 +80,29 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Categories */}
+          {/* Game Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 font-mono">Categories</h3>
+            <h3 className="text-lg font-semibold mb-4 font-mono">Game Info</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/categories/vegetables"
-                  className="text-gray-400 hover:text-white transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-600 px-2 py-1 inline-block"
-                >
-                  Vegetables
-                </Link>
+                <span className="text-gray-400 font-mono text-sm">
+                  🎮 Grow a Garden
+                </span>
               </li>
               <li>
-                <Link
-                  href="/categories/herbs"
-                  className="text-gray-400 hover:text-white transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-600 px-2 py-1 inline-block"
-                >
-                  Herbs
-                </Link>
+                <span className="text-gray-400 font-mono text-sm">
+                  🍳 32+ Recipes
+                </span>
               </li>
               <li>
-                <Link
-                  href="/categories/fruits"
-                  className="text-gray-400 hover:text-white transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-600 px-2 py-1 inline-block"
-                >
-                  Fruits
-                </Link>
+                <span className="text-gray-400 font-mono text-sm">
+                  🌈 7 Rarity Levels
+                </span>
               </li>
               <li>
-                <Link
-                  href="/categories/salads"
-                  className="text-gray-400 hover:text-white transition-colors font-mono text-sm border-2 border-transparent hover:border-gray-600 px-2 py-1 inline-block"
-                >
-                  Salads
-                </Link>
+                <span className="text-gray-400 font-mono text-sm">
+                  ⚡ Instant Search
+                </span>
               </li>
             </ul>
           </div>

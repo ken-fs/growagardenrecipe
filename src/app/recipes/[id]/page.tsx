@@ -1,12 +1,8 @@
 import React from "react";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Clock, ChefHat, Star } from "lucide-react";
+import { CopyButton } from "./CopyButton";
 
-// 像素艺术风格的食谱数据
+// 像素艺术风格的食谱数据 - 包含详细的变体信息
 const pixelRecipes = [
   {
     id: "soup",
@@ -15,10 +11,10 @@ const pixelRecipes = [
     cookTime: "~5 minutes",
     rarity: "COMMON",
     mainRecipe: "Carrot x1",
-    alternativeRecipes: "+0 more",
+    alternativeRecipes: "+2 more",
     ingredients: ["Carrot x1"],
     rarityColor: "bg-gray-500",
-    variantCount: 1,
+    variantCount: 3,
     description: "A simple and nutritious soup made from fresh carrots.",
     variants: [
       {
@@ -26,6 +22,24 @@ const pixelRecipes = [
         ingredients: ["Carrot x1"],
         cookTime: "~5 minutes",
         description: "The simplest soup recipe using just one carrot.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Garden Soup",
+        ingredients: ["Carrot x1", "Tomato x1"],
+        cookTime: "~7 minutes",
+        description: "A more flavorful soup with added tomato.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Herb Soup",
+        ingredients: ["Carrot x1", "Basil x1"],
+        cookTime: "~6 minutes",
+        description: "Aromatic soup with fresh basil.",
+        rarity: "RARE",
+        rarityColor: "bg-blue-500",
       },
     ],
   },
@@ -40,25 +54,66 @@ const pixelRecipes = [
     ingredients: ["1x Tomato", "4x Bone Blossom"],
     rarityColor: "bg-purple-600",
     variantCount: 6,
-    description: "A refreshing salad with a perfect balance of flavors.",
+    description:
+      "This recipe has 6 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Salad",
+        name: "Prismatic Salad",
         ingredients: ["1x Tomato", "4x Bone Blossom"],
         cookTime: "~3 minutes",
-        description: "The traditional salad recipe.",
+        description: "The most basic salad combination.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
       {
-        name: "Garden Salad",
-        ingredients: ["2x Tomato", "2x Bone Blossom", "1x Carrot"],
+        name: "Divine Salad",
+        ingredients: ["4x Beanstalk", "1x Tomato"],
         cookTime: "~4 minutes",
-        description: "A more complex salad with additional vegetables.",
+        description: "A divine combination with fresh beanstalks.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
       },
       {
-        name: "Premium Salad",
-        ingredients: ["1x Tomato", "3x Bone Blossom", "1x Sugar Apple"],
+        name: "Mixed Salad",
+        ingredients: [
+          "2x Bone Blossom",
+          "1x Pineapple",
+          "1x Pepper",
+          "1x Tomato",
+        ],
         cookTime: "~5 minutes",
-        description: "A premium version with sweet apple.",
+        description: "A complex mix of flavors and textures.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
+      },
+      {
+        name: "Mythical Salad",
+        ingredients: ["3x Bone Blossom", "2x Pineapple", "1x Pepper"],
+        cookTime: "~6 minutes",
+        description: "A mythical combination with rare ingredients.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Legendary Salad",
+        ingredients: ["4x Pineapple", "2x Pepper", "1x Tomato"],
+        cookTime: "~7 minutes",
+        description: "A legendary salad with premium ingredients.",
+        rarity: "LEGENDARY",
+        rarityColor: "bg-orange-600",
+      },
+      {
+        name: "Ultimate Salad",
+        ingredients: [
+          "5x Bone Blossom",
+          "3x Pineapple",
+          "2x Pepper",
+          "2x Tomato",
+        ],
+        cookTime: "~8 minutes",
+        description: "The ultimate salad with all ingredients.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
     ],
   },
@@ -73,25 +128,61 @@ const pixelRecipes = [
     ingredients: ["3x Bone Blossom", "1x Sugar Apple", "1x Banana"],
     rarityColor: "bg-purple-600",
     variantCount: 6,
-    description: "A delicious cake perfect for celebrations.",
+    description:
+      "This recipe has 6 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Cake",
+        name: "Basic Cake",
         ingredients: ["3x Bone Blossom", "1x Sugar Apple", "1x Banana"],
         cookTime: "~15 minutes",
-        description: "The traditional cake recipe.",
+        description: "A simple cake with basic ingredients.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
       {
         name: "Chocolate Cake",
-        ingredients: ["2x Bone Blossom", "2x Sugar Apple", "1x Banana"],
+        ingredients: ["4x Bone Blossom", "2x Sugar Apple", "1x Cocoa"],
         cookTime: "~18 minutes",
-        description: "A rich chocolate version.",
+        description: "Rich chocolate cake with cocoa powder.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
       {
         name: "Fruit Cake",
-        ingredients: ["3x Bone Blossom", "2x Sugar Apple", "2x Banana"],
+        ingredients: ["2x Bone Blossom", "3x Sugar Apple", "2x Banana"],
         cookTime: "~20 minutes",
-        description: "Extra fruity and sweet.",
+        description: "Fruity cake with extra sweetness.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Vanilla Cake",
+        ingredients: ["3x Bone Blossom", "2x Sugar Apple", "1x Vanilla"],
+        cookTime: "~16 minutes",
+        description: "Classic vanilla cake with aromatic vanilla.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Spice Cake",
+        ingredients: ["4x Bone Blossom", "1x Sugar Apple", "2x Cinnamon"],
+        cookTime: "~17 minutes",
+        description: "Warm spice cake with cinnamon.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Deluxe Cake",
+        ingredients: [
+          "5x Bone Blossom",
+          "3x Sugar Apple",
+          "2x Banana",
+          "1x Cocoa",
+        ],
+        cookTime: "~25 minutes",
+        description: "The ultimate deluxe cake with all ingredients.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
     ],
   },
@@ -106,19 +197,53 @@ const pixelRecipes = [
     ingredients: ["1x Sugarglaze", "4x Bone Blossom"],
     rarityColor: "bg-purple-600",
     variantCount: 5,
-    description: "Sweet and fluffy donuts that everyone loves.",
+    description:
+      "This recipe has 5 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Donut",
+        name: "Basic Donut",
         ingredients: ["1x Sugarglaze", "4x Bone Blossom"],
         cookTime: "~8 minutes",
-        description: "The traditional donut recipe.",
+        description: "A simple glazed donut.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
       {
-        name: "Glazed Donut",
-        ingredients: ["2x Sugarglaze", "3x Bone Blossom"],
+        name: "Chocolate Donut",
+        ingredients: ["1x Sugarglaze", "3x Bone Blossom", "1x Cocoa"],
         cookTime: "~10 minutes",
-        description: "Extra sweet with double glaze.",
+        description: "Chocolate glazed donut.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Sprinkled Donut",
+        ingredients: ["1x Sugarglaze", "4x Bone Blossom", "1x Sprinkles"],
+        cookTime: "~9 minutes",
+        description: "Colorful donut with sprinkles.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Filled Donut",
+        ingredients: ["1x Sugarglaze", "3x Bone Blossom", "1x Jam"],
+        cookTime: "~12 minutes",
+        description: "Jam-filled donut with glaze.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Deluxe Donut",
+        ingredients: [
+          "2x Sugarglaze",
+          "4x Bone Blossom",
+          "1x Cocoa",
+          "1x Sprinkles",
+        ],
+        cookTime: "~15 minutes",
+        description: "The ultimate deluxe donut.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
     ],
   },
@@ -133,19 +258,58 @@ const pixelRecipes = [
     ingredients: ["1x Tomato", "1x Banana", "3x Bone Blossom"],
     rarityColor: "bg-purple-600",
     variantCount: 5,
-    description: "A hearty sandwich perfect for any meal.",
+    description:
+      "This recipe has 5 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Sandwich",
+        name: "Basic Sandwich",
         ingredients: ["1x Tomato", "1x Banana", "3x Bone Blossom"],
         cookTime: "~7 minutes",
-        description: "The traditional sandwich recipe.",
+        description: "A simple sandwich with basic ingredients.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
       {
-        name: "Garden Sandwich",
-        ingredients: ["2x Tomato", "1x Banana", "2x Bone Blossom"],
+        name: "Veggie Sandwich",
+        ingredients: ["2x Tomato", "2x Bone Blossom", "1x Lettuce"],
         cookTime: "~8 minutes",
-        description: "Extra tomato for a garden fresh taste.",
+        description: "Fresh vegetable sandwich.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Fruit Sandwich",
+        ingredients: ["2x Banana", "1x Tomato", "2x Bone Blossom"],
+        cookTime: "~6 minutes",
+        description: "Sweet fruit sandwich.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Deluxe Sandwich",
+        ingredients: [
+          "2x Tomato",
+          "2x Banana",
+          "4x Bone Blossom",
+          "1x Lettuce",
+        ],
+        cookTime: "~10 minutes",
+        description: "The ultimate deluxe sandwich.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Gourmet Sandwich",
+        ingredients: [
+          "3x Tomato",
+          "3x Banana",
+          "5x Bone Blossom",
+          "2x Lettuce",
+        ],
+        cookTime: "~12 minutes",
+        description: "Gourmet sandwich with premium ingredients.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
     ],
   },
@@ -160,19 +324,70 @@ const pixelRecipes = [
     ingredients: ["1x Pumpkin", "4x Bone Blossom"],
     rarityColor: "bg-purple-600",
     variantCount: 7,
-    description: "A warm and comforting pie perfect for autumn.",
+    description:
+      "This recipe has 7 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Pie",
+        name: "Basic Pie",
         ingredients: ["1x Pumpkin", "4x Bone Blossom"],
         cookTime: "~8 minutes",
-        description: "The traditional pie recipe.",
+        description: "A simple pumpkin pie.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
       {
-        name: "Sweet Pie",
-        ingredients: ["1x Pumpkin", "3x Bone Blossom", "1x Sugar Apple"],
+        name: "Apple Pie",
+        ingredients: ["2x Apple", "3x Bone Blossom", "1x Sugar"],
         cookTime: "~10 minutes",
-        description: "A sweeter version with apple.",
+        description: "Classic apple pie.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Berry Pie",
+        ingredients: ["3x Berry", "2x Bone Blossom", "1x Sugar"],
+        cookTime: "~9 minutes",
+        description: "Sweet berry pie.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Chocolate Pie",
+        ingredients: ["1x Pumpkin", "3x Bone Blossom", "2x Cocoa"],
+        cookTime: "~11 minutes",
+        description: "Rich chocolate pie.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Mixed Fruit Pie",
+        ingredients: ["1x Apple", "2x Berry", "2x Bone Blossom", "1x Sugar"],
+        cookTime: "~12 minutes",
+        description: "Mixed fruit pie with various flavors.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Deluxe Pie",
+        ingredients: ["2x Pumpkin", "4x Bone Blossom", "1x Apple", "1x Berry"],
+        cookTime: "~14 minutes",
+        description: "The ultimate deluxe pie.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Ultimate Pie",
+        ingredients: [
+          "2x Pumpkin",
+          "5x Bone Blossom",
+          "2x Apple",
+          "2x Berry",
+          "1x Cocoa",
+        ],
+        cookTime: "~16 minutes",
+        description: "The ultimate pie with all ingredients.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
       },
     ],
   },
@@ -187,19 +402,37 @@ const pixelRecipes = [
     ingredients: ["1x Violet Corn", "2x Bone Blossom"],
     rarityColor: "bg-orange-500",
     variantCount: 3,
-    description: "A divine burger with premium ingredients.",
+    description:
+      "This recipe has 3 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Burger",
+        name: "Basic Burger",
         ingredients: ["1x Violet Corn", "2x Bone Blossom"],
         cookTime: "~10 minutes",
-        description: "The traditional burger recipe.",
+        description: "A simple burger with basic ingredients.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
+      },
+      {
+        name: "Cheese Burger",
+        ingredients: ["1x Violet Corn", "2x Bone Blossom", "1x Cheese"],
+        cookTime: "~12 minutes",
+        description: "Burger with melted cheese.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
       },
       {
         name: "Deluxe Burger",
-        ingredients: ["2x Violet Corn", "1x Bone Blossom"],
-        cookTime: "~12 minutes",
-        description: "Extra corn for a more filling burger.",
+        ingredients: [
+          "2x Violet Corn",
+          "3x Bone Blossom",
+          "1x Cheese",
+          "1x Lettuce",
+        ],
+        cookTime: "~15 minutes",
+        description: "The ultimate deluxe burger.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
       },
     ],
   },
@@ -214,19 +447,24 @@ const pixelRecipes = [
     ingredients: ["1x Violet Corn", "1x Bone Blossom"],
     rarityColor: "bg-orange-500",
     variantCount: 2,
-    description: "A quick and tasty hot dog perfect for snacks.",
+    description:
+      "This recipe has 2 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Hot Dog",
+        name: "Basic Hot Dog",
         ingredients: ["1x Violet Corn", "1x Bone Blossom"],
         cookTime: "~6 minutes",
-        description: "The traditional hot dog recipe.",
+        description: "A simple hot dog.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
       },
       {
-        name: "Gourmet Hot Dog",
-        ingredients: ["1x Violet Corn", "2x Bone Blossom"],
+        name: "Deluxe Hot Dog",
+        ingredients: ["2x Violet Corn", "2x Bone Blossom", "1x Mustard"],
         cookTime: "~8 minutes",
-        description: "A more elaborate version.",
+        description: "Deluxe hot dog with mustard.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
       },
     ],
   },
@@ -241,19 +479,45 @@ const pixelRecipes = [
     ingredients: ["2x Sugar Apple", "1x Bone Blossom"],
     rarityColor: "bg-red-600",
     variantCount: 4,
-    description: "A mythical waffle with unique visual effects.",
+    description:
+      "This recipe has 4 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Waffle",
+        name: "Basic Waffle",
         ingredients: ["2x Sugar Apple", "1x Bone Blossom"],
         cookTime: "~8 minutes",
-        description: "The traditional waffle recipe.",
+        description: "A simple sweet waffle.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
       },
       {
-        name: "Golden Waffle",
-        ingredients: ["3x Sugar Apple", "1x Bone Blossom"],
+        name: "Chocolate Waffle",
+        ingredients: ["2x Sugar Apple", "1x Bone Blossom", "1x Cocoa"],
         cookTime: "~10 minutes",
-        description: "Extra sweet with golden appearance.",
+        description: "Chocolate waffle with cocoa.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Berry Waffle",
+        ingredients: ["2x Sugar Apple", "1x Bone Blossom", "2x Berry"],
+        cookTime: "~9 minutes",
+        description: "Waffle with fresh berries.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Deluxe Waffle",
+        ingredients: [
+          "3x Sugar Apple",
+          "2x Bone Blossom",
+          "1x Cocoa",
+          "2x Berry",
+        ],
+        cookTime: "~12 minutes",
+        description: "The ultimate deluxe waffle.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
       },
     ],
   },
@@ -268,19 +532,84 @@ const pixelRecipes = [
     ingredients: ["1x Tomato", "2x Bone Blossom", "1x Violet Corn"],
     rarityColor: "bg-orange-600",
     variantCount: 6,
-    description: "A legendary pizza perfect for sharing.",
+    description:
+      "This recipe has 6 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Pizza",
+        name: "Basic Pizza",
         ingredients: ["1x Tomato", "2x Bone Blossom", "1x Violet Corn"],
         cookTime: "~12 minutes",
-        description: "The traditional pizza recipe.",
+        description: "A simple pizza with basic toppings.",
+        rarity: "LEGENDARY",
+        rarityColor: "bg-orange-600",
+      },
+      {
+        name: "Cheese Pizza",
+        ingredients: [
+          "1x Tomato",
+          "2x Bone Blossom",
+          "1x Violet Corn",
+          "1x Cheese",
+        ],
+        cookTime: "~14 minutes",
+        description: "Pizza with extra cheese.",
+        rarity: "LEGENDARY",
+        rarityColor: "bg-orange-600",
+      },
+      {
+        name: "Pepperoni Pizza",
+        ingredients: [
+          "1x Tomato",
+          "2x Bone Blossom",
+          "1x Violet Corn",
+          "2x Pepperoni",
+        ],
+        cookTime: "~15 minutes",
+        description: "Classic pepperoni pizza.",
+        rarity: "LEGENDARY",
+        rarityColor: "bg-orange-600",
+      },
+      {
+        name: "Veggie Pizza",
+        ingredients: [
+          "2x Tomato",
+          "2x Bone Blossom",
+          "1x Violet Corn",
+          "1x Bell Pepper",
+        ],
+        cookTime: "~13 minutes",
+        description: "Vegetarian pizza with fresh vegetables.",
+        rarity: "LEGENDARY",
+        rarityColor: "bg-orange-600",
       },
       {
         name: "Supreme Pizza",
-        ingredients: ["2x Tomato", "2x Bone Blossom", "1x Violet Corn"],
-        cookTime: "~15 minutes",
-        description: "Extra toppings for a supreme experience.",
+        ingredients: [
+          "2x Tomato",
+          "3x Bone Blossom",
+          "1x Violet Corn",
+          "1x Cheese",
+          "1x Pepperoni",
+        ],
+        cookTime: "~16 minutes",
+        description: "Supreme pizza with all toppings.",
+        rarity: "LEGENDARY",
+        rarityColor: "bg-orange-600",
+      },
+      {
+        name: "Ultimate Pizza",
+        ingredients: [
+          "3x Tomato",
+          "4x Bone Blossom",
+          "2x Violet Corn",
+          "2x Cheese",
+          "2x Pepperoni",
+          "1x Bell Pepper",
+        ],
+        cookTime: "~18 minutes",
+        description: "The ultimate pizza with everything.",
+        rarity: "LEGENDARY",
+        rarityColor: "bg-orange-600",
       },
     ],
   },
@@ -295,19 +624,32 @@ const pixelRecipes = [
     ingredients: ["1x Sugar Apple", "1x Bone Blossom"],
     rarityColor: "bg-orange-500",
     variantCount: 3,
-    description: "Fluffy pancakes perfect for breakfast.",
+    description:
+      "This recipe has 3 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Pancake",
+        name: "Basic Pancake",
         ingredients: ["1x Sugar Apple", "1x Bone Blossom"],
         cookTime: "~7 minutes",
-        description: "The traditional pancake recipe.",
+        description: "A simple sweet pancake.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
       },
       {
-        name: "Stacked Pancake",
-        ingredients: ["2x Sugar Apple", "1x Bone Blossom"],
+        name: "Blueberry Pancake",
+        ingredients: ["1x Sugar Apple", "1x Bone Blossom", "2x Blueberry"],
+        cookTime: "~8 minutes",
+        description: "Pancake with fresh blueberries.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
+      },
+      {
+        name: "Chocolate Pancake",
+        ingredients: ["1x Sugar Apple", "1x Bone Blossom", "1x Cocoa"],
         cookTime: "~9 minutes",
-        description: "Extra thick and sweet.",
+        description: "Chocolate pancake with cocoa powder.",
+        rarity: "DIVINE",
+        rarityColor: "bg-orange-500",
       },
     ],
   },
@@ -322,223 +664,193 @@ const pixelRecipes = [
     ingredients: ["1x Sugar Apple", "2x Bone Blossom"],
     rarityColor: "bg-red-600",
     variantCount: 4,
-    description: "Sweet cookies with a magical touch.",
+    description:
+      "This recipe has 4 variants with different ingredient combinations.",
     variants: [
       {
-        name: "Classic Cookie",
+        name: "Basic Cookie",
         ingredients: ["1x Sugar Apple", "2x Bone Blossom"],
         cookTime: "~5 minutes",
-        description: "The traditional cookie recipe.",
+        description: "A simple sweet cookie.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
       },
       {
-        name: "Double Cookie",
-        ingredients: ["2x Sugar Apple", "2x Bone Blossom"],
+        name: "Chocolate Chip Cookie",
+        ingredients: ["1x Sugar Apple", "2x Bone Blossom", "1x Chocolate Chip"],
+        cookTime: "~6 minutes",
+        description: "Classic chocolate chip cookie.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Oatmeal Cookie",
+        ingredients: ["1x Sugar Apple", "2x Bone Blossom", "1x Oat"],
         cookTime: "~7 minutes",
-        description: "Extra sweet with double sugar.",
+        description: "Healthy oatmeal cookie.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Deluxe Cookie",
+        ingredients: [
+          "2x Sugar Apple",
+          "3x Bone Blossom",
+          "1x Chocolate Chip",
+          "1x Oat",
+        ],
+        cookTime: "~8 minutes",
+        description: "The ultimate deluxe cookie.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
       },
     ],
   },
 ];
 
-interface RecipePageProps {
-  params: Promise<{
-    id: string;
-  }>;
+interface RecipeDetailPageProps {
+  params: Promise<{ id: string }>;
 }
 
-export default async function RecipePage({ params }: RecipePageProps) {
+export default async function RecipeDetailPage({
+  params,
+}: RecipeDetailPageProps) {
   const { id } = await params;
   const recipe = pixelRecipes.find((r) => r.id === id);
 
   if (!recipe) {
-    notFound();
-  }
-
-  return (
-    <div
-      className="min-h-screen"
-      style={{
-        backgroundImage: `
+    return (
+      <div
+        className="min-h-screen bg-green-100"
+        style={{
+          backgroundImage: `
           linear-gradient(45deg, #90EE90 25%, transparent 25%), 
           linear-gradient(-45deg, #90EE90 25%, transparent 25%), 
           linear-gradient(45deg, transparent 75%, #90EE90 75%), 
           linear-gradient(-45deg, transparent 75%, #90EE90 75%)
         `,
+          backgroundSize: "20px 20px",
+          backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+          imageRendering: "pixelated",
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="bg-white border-4 border-gray-800 p-8 text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4 font-mono">
+              Recipe Not Found
+            </h1>
+            <Link
+              href="/"
+              className="inline-block bg-blue-600 text-white px-6 py-3 border-2 border-gray-800 font-mono hover:bg-blue-700"
+            >
+              ← Back to Recipes
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="min-h-screen bg-green-100"
+      style={{
+        backgroundImage: `
+        linear-gradient(45deg, #90EE90 25%, transparent 25%), 
+        linear-gradient(-45deg, #90EE90 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #90EE90 75%), 
+        linear-gradient(-45deg, transparent 75%, #90EE90 75%)
+      `,
         backgroundSize: "20px 20px",
         backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+        imageRendering: "pixelated",
       }}
     >
-      <Header />
-
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Back Button */}
-        <Link href="/">
-          <Button
-            variant="outline"
-            className="mb-6 border-2 border-gray-800 font-mono"
-            style={{ imageRendering: "pixelated" }}
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Recipes
-          </Button>
-        </Link>
-
-        {/* Recipe Header */}
-        <div
-          className="bg-white border-2 border-gray-800 p-8 mb-8"
-          style={{ imageRendering: "pixelated" }}
-        >
-          <div className="text-center mb-6">
-            <div
-              className="text-8xl mb-4"
-              style={{ imageRendering: "pixelated" }}
-            >
-              {recipe.icon}
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2 font-mono">
-              {recipe.title}
+      {/* Header */}
+      <div className="bg-green-800 border-b-4 border-gray-800">
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-white font-mono">
+              Ψq Grow a Garden
             </h1>
-            <p className="text-lg text-gray-600 font-mono mb-4">
-              {recipe.description}
-            </p>
-
-            {/* Rarity Badge */}
-            <div className="mb-4">
-              <span
-                className={`px-4 py-2 text-sm font-mono text-white ${recipe.rarityColor}`}
-              >
-                {recipe.rarity}
-              </span>
-            </div>
-
-            {/* Cook Time */}
-            {recipe.cookTime && (
-              <div className="flex items-center justify-center gap-2 text-gray-600 font-mono">
-                <Clock className="h-5 w-5" />
-                <span>{recipe.cookTime}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Recipe Variants */}
-        <div
-          className="bg-white border-2 border-gray-800 p-6 mb-8"
-          style={{ imageRendering: "pixelated" }}
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 font-mono flex items-center gap-2">
-            <ChefHat className="h-6 w-6" />
-            Recipe Variants
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {recipe.variants.map((variant, index) => (
-              <div
-                key={index}
-                className="border-2 border-gray-400 p-4 bg-gray-50"
-                style={{ imageRendering: "pixelated" }}
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-mono">
-                  {variant.name}
-                </h3>
-                <p className="text-sm text-gray-600 font-mono mb-3">
-                  {variant.description}
-                </p>
-
-                {/* Ingredients */}
-                <div className="mb-3">
-                  <h4 className="text-sm font-bold text-gray-800 font-mono mb-2">
-                    Ingredients:
-                  </h4>
-                  <div className="flex flex-wrap gap-1">
-                    {variant.ingredients.map((ingredient, ingIndex) => (
-                      <span
-                        key={ingIndex}
-                        className="px-2 py-1 bg-gray-200 border border-gray-400 text-xs font-mono text-gray-800"
-                      >
-                        {ingredient}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Cook Time */}
-                {variant.cookTime && (
-                  <div className="flex items-center gap-2 text-sm text-gray-600 font-mono">
-                    <Clock className="h-4 w-4" />
-                    <span>{variant.cookTime}</span>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Ingredients List */}
-        <div
-          className="bg-white border-2 border-gray-800 p-6 mb-8"
-          style={{ imageRendering: "pixelated" }}
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 font-mono">
-            All Ingredients
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {recipe.ingredients.map((ingredient, index) => (
-              <div
-                key={index}
-                className="border-2 border-gray-400 p-3 bg-gray-50 text-center"
-                style={{ imageRendering: "pixelated" }}
-              >
-                <span className="text-sm font-mono text-gray-800">
-                  {ingredient}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Recipe Stats */}
-        <div
-          className="bg-white border-2 border-gray-800 p-6"
-          style={{ imageRendering: "pixelated" }}
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 font-mono">
-            Recipe Information
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 font-mono mb-2">
-                {recipe.variantCount}
-              </div>
-              <div className="text-sm text-gray-600 font-mono">
-                Total Variants
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 font-mono mb-2">
-                {recipe.ingredients.length}
-              </div>
-              <div className="text-sm text-gray-600 font-mono">
-                Main Ingredients
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 font-mono mb-2">
-                {recipe.rarity}
-              </div>
-              <div className="text-sm text-gray-600 font-mono">
-                Rarity Level
-              </div>
-            </div>
+            <p className="text-white font-mono text-sm">Recipe Collection</p>
           </div>
         </div>
       </div>
 
-      <Footer />
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Back Button */}
+        <div className="mb-6">
+          <Link
+            href="/"
+            className="inline-block bg-gray-600 text-white px-4 py-2 border-2 border-gray-800 font-mono hover:bg-gray-700"
+          >
+            ← Back to Recipes
+          </Link>
+        </div>
+
+        {/* Main Recipe Info */}
+        <div className="bg-white border-4 border-gray-800 p-6 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 font-mono">
+              {recipe.title}
+            </h2>
+            <span
+              className={`px-4 py-2 text-white font-mono text-sm border-2 border-gray-800 ${recipe.rarityColor}`}
+            >
+              {recipe.rarity}
+            </span>
+          </div>
+          <p className="text-gray-700 font-mono text-lg">
+            {recipe.description}
+          </p>
+        </div>
+
+        {/* Recipe Variants */}
+        <div className="mb-6">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4 font-mono">
+            Recipe Variants
+          </h3>
+          <div className="space-y-4">
+            {recipe.variants.map((variant, index) => (
+              <VariantCard key={index} variant={variant} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface VariantCardProps {
+  variant: {
+    name: string;
+    ingredients: string[];
+    cookTime: string;
+    description: string;
+    rarity: string;
+    rarityColor: string;
+  };
+}
+
+function VariantCard({ variant }: VariantCardProps) {
+  return (
+    <div className="bg-white border-4 border-gray-800 p-4">
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <div className="flex items-center gap-4 mb-2">
+            <span
+              className={`px-3 py-1 text-white font-mono text-xs border-2 border-gray-800 ${variant.rarityColor}`}
+            >
+              {variant.rarity}
+            </span>
+          </div>
+          <p className="text-gray-800 font-mono text-sm">
+            {variant.ingredients.join(" + ")}
+          </p>
+        </div>
+        <CopyButton ingredients={variant.ingredients} />
+      </div>
     </div>
   );
 }
