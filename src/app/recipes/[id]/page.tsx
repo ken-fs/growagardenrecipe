@@ -2875,6 +2875,109 @@ const pixelRecipes = [
         rarity: "COMMON",
         rarityColor: "bg-gray-500",
       },
+      {
+        name: "Vanilla Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Vanilla x1"],
+        cookTime: "~12 minutes",
+        description: "Classic vanilla muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Coconut Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Coconut x1"],
+        cookTime: "~13 minutes",
+        description: "Tropical coconut muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Almond Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Almond x1"],
+        cookTime: "~13 minutes",
+        description: "Nutty almond muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Walnut Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Walnut x1"],
+        cookTime: "~13 minutes",
+        description: "Rich walnut muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Pecan Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Pecan x1"],
+        cookTime: "~13 minutes",
+        description: "Buttery pecan muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Hazelnut Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Hazelnut x1"],
+        cookTime: "~13 minutes",
+        description: "Rich hazelnut muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Pistachio Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Pistachio x1"],
+        cookTime: "~13 minutes",
+        description: "Green pistachio muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Chocolate Chip Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Chocolate Chip x1"],
+        cookTime: "~13 minutes",
+        description: "Classic chocolate chip muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Double Chocolate Muffin",
+        ingredients: [
+          "Flour x2",
+          "Egg x1",
+          "Sugar x1",
+          "Chocolate x1",
+          "Chocolate Chip x1",
+        ],
+        cookTime: "~14 minutes",
+        description: "Rich double chocolate muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Red Velvet Muffin",
+        ingredients: ["Flour x2", "Egg x1", "Sugar x1", "Red Food Color x1"],
+        cookTime: "~13 minutes",
+        description: "Decadent red velvet muffin.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
+      {
+        name: "Royal Muffin",
+        ingredients: [
+          "Flour x3",
+          "Egg x2",
+          "Sugar x2",
+          "Chocolate x1",
+          "Berry x1",
+          "Nuts x1",
+          "Vanilla x1",
+          "Gold Leaf x1",
+        ],
+        cookTime: "~16 minutes",
+        description: "The royal muffin experience.",
+        rarity: "COMMON",
+        rarityColor: "bg-gray-500",
+      },
     ],
   },
   {
@@ -2997,6 +3100,126 @@ const pixelRecipes = [
         ],
         cookTime: "~25 minutes",
         description: "The ultimate croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Plain Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1"],
+        cookTime: "~22 minutes",
+        description: "Simple plain croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Whole Wheat Croissant",
+        ingredients: ["Butter x2", "Whole Wheat Flour x2", "Yeast x1"],
+        cookTime: "~23 minutes",
+        description: "Healthy whole wheat croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Sesame Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Sesame x1"],
+        cookTime: "~23 minutes",
+        description: "Nutty sesame croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Poppy Seed Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Poppy Seed x1"],
+        cookTime: "~23 minutes",
+        description: "Traditional poppy seed croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Everything Croissant",
+        ingredients: [
+          "Butter x2",
+          "Flour x2",
+          "Yeast x1",
+          "Sesame x1",
+          "Poppy Seed x1",
+          "Onion x1",
+        ],
+        cookTime: "~24 minutes",
+        description: "Everything seasoning croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Garlic Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Garlic x1"],
+        cookTime: "~23 minutes",
+        description: "Aromatic garlic croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Onion Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Onion x1"],
+        cookTime: "~23 minutes",
+        description: "Savory onion croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Herb Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Herb x1"],
+        cookTime: "~23 minutes",
+        description: "Aromatic herb croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Tomato Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Tomato x1"],
+        cookTime: "~23 minutes",
+        description: "Fresh tomato croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Bell Pepper Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Bell Pepper x1"],
+        cookTime: "~23 minutes",
+        description: "Colorful bell pepper croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Olive Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Olive x1"],
+        cookTime: "~23 minutes",
+        description: "Mediterranean olive croissant.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Royal Croissant",
+        ingredients: [
+          "Butter x3",
+          "Flour x3",
+          "Yeast x2",
+          "Ham x1",
+          "Cheese x1",
+          "Egg x1",
+          "Truffle x1",
+          "Gold Leaf x1",
+        ],
+        cookTime: "~28 minutes",
+        description: "The royal croissant experience.",
+        rarity: "MYTHICAL",
+        rarityColor: "bg-red-600",
+      },
+      {
+        name: "Truffle Croissant",
+        ingredients: ["Butter x2", "Flour x2", "Yeast x1", "Truffle x1"],
+        cookTime: "~24 minutes",
+        description: "Luxurious truffle croissant.",
         rarity: "MYTHICAL",
         rarityColor: "bg-red-600",
       },
@@ -3409,6 +3632,119 @@ const pixelRecipes = [
         rarity: "PRISMATIC",
         rarityColor: "bg-purple-600",
       },
+      {
+        name: "Vanilla Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Vanilla x1"],
+        cookTime: "~30 minutes",
+        description: "Classic vanilla macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Coconut Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Coconut x1"],
+        cookTime: "~31 minutes",
+        description: "Tropical coconut macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Mint Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Mint x1"],
+        cookTime: "~30 minutes",
+        description: "Refreshing mint macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Hazelnut Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Hazelnut x1"],
+        cookTime: "~31 minutes",
+        description: "Rich hazelnut macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Almond Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Almond x1"],
+        cookTime: "~31 minutes",
+        description: "Double almond macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Cinnamon Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Cinnamon x1"],
+        cookTime: "~30 minutes",
+        description: "Warm cinnamon macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Ginger Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Ginger x1"],
+        cookTime: "~31 minutes",
+        description: "Spicy ginger macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Cardamom Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Cardamom x1"],
+        cookTime: "~31 minutes",
+        description: "Aromatic cardamom macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Earl Grey Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Earl Grey x1"],
+        cookTime: "~31 minutes",
+        description: "Sophisticated Earl Grey macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Jasmine Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Jasmine x1"],
+        cookTime: "~31 minutes",
+        description: "Floral jasmine macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Champagne Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Champagne x1"],
+        cookTime: "~32 minutes",
+        description: "Elegant champagne macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Royal Macaron",
+        ingredients: [
+          "Almond x3",
+          "Sugar x3",
+          "Egg x3",
+          "Chocolate x1",
+          "Strawberry x1",
+          "Pistachio x1",
+          "Vanilla x1",
+          "Gold Leaf x1",
+        ],
+        cookTime: "~35 minutes",
+        description: "The royal macaron experience.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Black Sesame Macaron",
+        ingredients: ["Almond x2", "Sugar x2", "Egg x2", "Black Sesame x1"],
+        cookTime: "~31 minutes",
+        description: "Nutty black sesame macaron.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
     ],
   },
   {
@@ -3550,6 +3886,135 @@ const pixelRecipes = [
         rarity: "PRISMATIC",
         rarityColor: "bg-purple-600",
       },
+      {
+        name: "Vanilla Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Vanilla x1"],
+        cookTime: "~35 minutes",
+        description: "Classic vanilla tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Mint Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Mint x1"],
+        cookTime: "~35 minutes",
+        description: "Refreshing mint tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Coconut Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Coconut x1"],
+        cookTime: "~36 minutes",
+        description: "Tropical coconut tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Mango Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Mango x1"],
+        cookTime: "~36 minutes",
+        description: "Exotic mango tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Peach Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Peach x1"],
+        cookTime: "~36 minutes",
+        description: "Sweet peach tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Cherry Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Cherry x1"],
+        cookTime: "~36 minutes",
+        description: "Rich cherry tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Blueberry Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Blueberry x1"],
+        cookTime: "~36 minutes",
+        description: "Antioxidant-rich blueberry tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Blackberry Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Blackberry x1"],
+        cookTime: "~36 minutes",
+        description: "Tart blackberry tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Passion Fruit Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Passion Fruit x1"],
+        cookTime: "~36 minutes",
+        description: "Tropical passion fruit tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Pomegranate Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Pomegranate x1"],
+        cookTime: "~36 minutes",
+        description: "Antioxidant-rich pomegranate tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Fig Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Fig x1"],
+        cookTime: "~36 minutes",
+        description: "Mediterranean fig tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Date Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Date x1"],
+        cookTime: "~36 minutes",
+        description: "Natural sweet date tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Ginger Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Ginger x1"],
+        cookTime: "~36 minutes",
+        description: "Warming ginger tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Cardamom Tiramisu",
+        ingredients: ["Coffee x2", "Cream x2", "Cocoa x1", "Cardamom x1"],
+        cookTime: "~36 minutes",
+        description: "Aromatic cardamom tiramisu.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
+      {
+        name: "Royal Tiramisu",
+        ingredients: [
+          "Coffee x3",
+          "Cream x3",
+          "Cocoa x2",
+          "Chocolate x1",
+          "Strawberry x1",
+          "Pistachio x1",
+          "Vanilla x1",
+          "Gold Leaf x1",
+        ],
+        cookTime: "~40 minutes",
+        description: "The royal tiramisu experience.",
+        rarity: "PRISMATIC",
+        rarityColor: "bg-purple-600",
+      },
     ],
   },
 ];
@@ -3565,7 +4030,7 @@ export default async function RecipeDetailPage({
   const recipe = pixelRecipes.find((r) => r.id === id);
 
   if (!recipe) {
-    return (
+  return (
       <div
         className="min-h-screen bg-green-100"
         style={{
@@ -3590,9 +4055,9 @@ export default async function RecipeDetailPage({
               className="inline-block bg-blue-600 text-white px-6 py-3 border-2 border-gray-800 font-mono hover:bg-blue-700"
             >
               ← Back to Recipes
-            </Link>
-          </div>
-        </div>
+        </Link>
+            </div>
+              </div>
       </div>
     );
   }
@@ -3618,11 +4083,11 @@ export default async function RecipeDetailPage({
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white font-mono">
               Ψq Grow a Garden
-            </h1>
+              </h1>
             <p className="text-white font-mono text-sm">Recipe Collection</p>
-          </div>
-        </div>
-      </div>
+                </div>
+                </div>
+              </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Back Button */}
@@ -3630,41 +4095,50 @@ export default async function RecipeDetailPage({
           <Link
             href="/"
             className="inline-block bg-gray-600 text-white px-4 py-2 border-2 border-gray-800 font-mono hover:bg-gray-700"
+            onClick={() => {
+              // 尝试返回到之前的位置
+              const scrollPosition = sessionStorage.getItem('scrollPosition');
+              if (scrollPosition) {
+                setTimeout(() => {
+                  window.scrollTo(0, parseInt(scrollPosition));
+                }, 100);
+              }
+            }}
           >
             ← Back to Recipes
           </Link>
-        </div>
+            </div>
 
         {/* Main Recipe Info */}
         <div className="bg-white border-4 border-gray-800 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-3xl font-bold text-gray-900 font-mono">
               {recipe.title}
-            </h2>
+                </h2>
             <span
               className={`px-4 py-2 text-white font-mono text-sm border-2 border-gray-800 ${recipe.rarityColor}`}
             >
               {recipe.rarity}
-            </span>
+                      </span>
           </div>
           <p className="text-gray-700 font-mono text-lg">
             {recipe.description}
           </p>
-        </div>
+          </div>
 
         {/* Recipe Variants */}
         <div className="mb-6">
           <h3 className="text-2xl font-bold text-gray-900 mb-4 font-mono">
             Recipe Variants
-          </h3>
+                  </h3>
           <div className="space-y-4">
             {recipe.variants.map((variant, index) => (
               <VariantCard key={index} variant={variant} />
             ))}
-          </div>
-        </div>
-      </div>
-    </div>
+                    </div>
+                    </div>
+                    </div>
+                      </div>
   );
 }
 
@@ -3690,13 +4164,13 @@ function VariantCard({ variant }: VariantCardProps) {
             >
               {variant.rarity}
             </span>
-          </div>
+                  </div>
           <p className="text-gray-800 font-mono text-sm">
             {variant.ingredients.join(" + ")}
           </p>
-        </div>
+            </div>
         <CopyButton ingredients={variant.ingredients} />
-      </div>
+          </div>
     </div>
   );
 }
