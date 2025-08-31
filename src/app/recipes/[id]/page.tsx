@@ -2,6 +2,98 @@ import React from "react";
 import Link from "next/link";
 import { CopyButton } from "./CopyButton";
 import { BackButton } from "./BackButton";
+import type { Metadata } from "next";
+
+// VariantCard 组件定义
+interface VariantCardProps {
+  variant: {
+    name: string;
+    ingredients: string[];
+    cookTime: string;
+    description: string;
+    rarity: string;
+    rarityColor: string;
+  };
+}
+
+function VariantCard({ variant }: VariantCardProps) {
+  return (
+    <div className="tech-gradient border-4 p-4 tech-border hover:tech-glow-sm transition-all">
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <div className="flex items-center gap-4 mb-2">
+            <span
+              className={`px-3 py-1 text-white font-mono text-xs border-2 border-green-500 ${variant.rarityColor}`}
+            >
+              {variant.rarity}
+            </span>
+          </div>
+          <p className="text-green-200 font-mono text-sm">
+            {variant.ingredients.join(" + ")}
+          </p>
+        </div>
+        <CopyButton ingredients={variant.ingredients} />
+      </div>
+    </div>
+  );
+}
+
+// 动态元数据生成函数
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const recipe = pixelRecipes.find((r) => r.id === id);
+
+  if (!recipe) {
+    return {
+      title: "Recipe Not Found | Grow a Garden Recipe Guide",
+      description:
+        "The requested recipe could not be found in our Grow a Garden recipe database.",
+    };
+  }
+
+  const title = `${recipe.title} Recipe Guide | Grow a Garden Cooking - ${recipe.rarity} Rarity`;
+  const description = `Learn how to cook ${recipe.title} in Grow a Garden! Complete ingredient list, cooking time (${recipe.cookTime}), and ${recipe.variants} recipe variants. ${recipe.rarity} rarity item guide.`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      `Grow a Garden ${recipe.title}`,
+      `${recipe.title} recipe`,
+      `Grow a Garden ${recipe.title} ingredients`,
+      `${recipe.rarity} recipe`,
+      "farming game cooking",
+      "garden game recipes",
+    ],
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: `https://growagardenrecipe.net/recipes/${id}`,
+      images: [
+        {
+          url: `/recipes/${id}-og.jpg`,
+          width: 1200,
+          height: 630,
+          alt: `${recipe.title} Recipe Guide - Grow a Garden`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`/recipes/${id}-og.jpg`],
+    },
+    alternates: {
+      canonical: `https://growagardenrecipe.net/recipes/${id}`,
+    },
+  };
+}
 
 // 像素艺术风格的食谱数据 - 包含详细的变体信息
 const pixelRecipes = [
@@ -4063,103 +4155,114 @@ export default async function RecipeDetailPage({
     );
   }
 
+  // 结构化数据
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    name: recipe.title,
+    description: `Complete guide for cooking ${recipe.title} in Grow a Garden game`,
+    url: `https://growagardenrecipe.net/recipes/${recipe.id}`,
+    image: `https://growagardenrecipe.net/recipes/${recipe.id}-og.jpg`,
+    cookTime: recipe.cookTime,
+    recipeCategory: "Gaming Recipe",
+    recipeCuisine: "Grow a Garden",
+    recipeIngredient: recipe.ingredients,
+    recipeInstructions: [
+      `Gather the required ingredients: ${recipe.ingredients.join(", ")}`,
+      `Open the cooking interface in Grow a Garden game`,
+      `Select the ${recipe.title} recipe`,
+      `Add all ingredients to the cooking pot`,
+      `Wait for the cooking process to complete (${recipe.cookTime})`,
+      `Collect your finished ${recipe.title}`,
+    ],
+    recipeYield: "1 serving",
+    author: {
+      "@type": "Organization",
+      name: "Grow a Garden Recipe Guide",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Grow a Garden Recipe Guide",
+      url: "https://growagardenrecipe.net",
+    },
+    datePublished: "2024-01-01",
+    dateModified: "2024-01-01",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://growagardenrecipe.net/recipes/${recipe.id}`,
+    },
+  };
+
   return (
-    <div
-      className="min-h-screen bg-green-100"
-      style={{
-        backgroundImage: `
-        linear-gradient(45deg, #90EE90 25%, transparent 25%), 
-        linear-gradient(-45deg, #90EE90 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #90EE90 75%), 
-        linear-gradient(-45deg, transparent 75%, #90EE90 75%)
-      `,
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-        imageRendering: "pixelated",
-      }}
-    >
-      {/* Header */}
-      <div className="bg-green-900 border-b-4 border-green-600 tech-glow">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-green-100 font-mono tech-text-glow">
-              Ψq Grow a Garden
-            </h1>
-            <p className="text-green-200 font-mono text-sm">
-              Recipe Collection
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div
+        className="min-h-screen game-bg"
+        style={{
+          backgroundImage: `
+          linear-gradient(45deg, #1a3d2e 25%, transparent 25%), 
+          linear-gradient(-45deg, #1a3d2e 25%, transparent 25%), 
+          linear-gradient(45deg, transparent 75%, #1a3d2e 75%), 
+          linear-gradient(-45deg, transparent 75%, #1a3d2e 75%)
+        `,
+          backgroundSize: "20px 20px",
+          backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+          imageRendering: "pixelated",
+        }}
+      >
+        {/* Header */}
+        <div className="bg-green-900 border-b-4 border-green-600 tech-glow">
+          <div className="max-w-4xl mx-auto px-4 py-4">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold text-green-100 font-mono tech-text-glow">
+                Ψq Grow a Garden
+              </h1>
+              <p className="text-green-200 font-mono text-sm">
+                Recipe Collection
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          {/* Back Button */}
+          <div className="mb-6">
+            <BackButton />
+          </div>
+
+          {/* Main Recipe Info */}
+          <div className="tech-gradient border-4 p-6 mb-6 tech-border tech-glow">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-3xl font-bold game-text font-mono tech-text-glow">
+                {recipe.title}
+              </h2>
+              <span
+                className={`px-4 py-2 text-white font-mono text-sm border-2 border-green-500 ${recipe.rarityColor}`}
+              >
+                {recipe.rarity}
+              </span>
+            </div>
+            <p className="text-green-200 font-mono text-lg">
+              {recipe.description}
             </p>
           </div>
-        </div>
-      </div>
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Back Button */}
-        <div className="mb-6">
-          <BackButton />
-        </div>
-
-        {/* Main Recipe Info */}
-        <div className="tech-gradient border-4 p-6 mb-6 tech-border tech-glow">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-3xl font-bold game-text font-mono tech-text-glow">
-              {recipe.title}
-            </h2>
-            <span
-              className={`px-4 py-2 text-white font-mono text-sm border-2 border-green-500 ${recipe.rarityColor}`}
-            >
-              {recipe.rarity}
-            </span>
-          </div>
-          <p className="text-green-200 font-mono text-lg">
-            {recipe.description}
-          </p>
-        </div>
-
-        {/* Recipe Variants */}
-        <div className="mb-6">
-          <h3 className="text-2xl font-bold game-text mb-4 font-mono tech-text-glow">
-            Recipe Variants
-          </h3>
-          <div className="space-y-4">
-            {recipe.variants.map((variant, index) => (
-              <VariantCard key={index} variant={variant} />
-            ))}
+          {/* Recipe Variants */}
+          <div className="mb-6">
+            <h3 className="text-2xl font-bold game-text mb-4 font-mono tech-text-glow">
+              Recipe Variants
+            </h3>
+            <div className="space-y-4">
+              {recipe.variants.map((variant, index) => (
+                <VariantCard key={index} variant={variant} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-interface VariantCardProps {
-  variant: {
-    name: string;
-    ingredients: string[];
-    cookTime: string;
-    description: string;
-    rarity: string;
-    rarityColor: string;
-  };
-}
-
-function VariantCard({ variant }: VariantCardProps) {
-  return (
-    <div className="tech-gradient border-4 p-4 tech-border hover:tech-glow-sm transition-all">
-      <div className="flex items-center justify-between">
-        <div className="flex-1">
-          <div className="flex items-center gap-4 mb-2">
-            <span
-              className={`px-3 py-1 text-white font-mono text-xs border-2 border-green-500 ${variant.rarityColor}`}
-            >
-              {variant.rarity}
-            </span>
-          </div>
-          <p className="text-green-200 font-mono text-sm">
-            {variant.ingredients.join(" + ")}
-          </p>
-        </div>
-        <CopyButton ingredients={variant.ingredients} />
-      </div>
-    </div>
+    </>
   );
 }

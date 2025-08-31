@@ -503,302 +503,372 @@ export default function Home() {
     return matchesSearch && matchesRarity;
   });
 
+  // 结构化数据
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Grow a Garden Recipe Guide",
+    description:
+      "Complete recipe database for Grow a Garden game with ingredient combinations, cooking times, and rarity guides",
+    url: "https://growagardenrecipe.net",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://growagardenrecipe.net/?search={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Grow a Garden Recipes",
+      description: "Complete collection of Grow a Garden cooking recipes",
+      numberOfItems: pixelRecipes.length,
+      itemListElement: pixelRecipes.map((recipe, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Recipe",
+          name: recipe.title,
+          description: `Learn how to cook ${recipe.title} in Grow a Garden`,
+          url: `https://growagardenrecipe.net/recipes/${recipe.id}`,
+          cookTime: recipe.cookTime,
+          recipeCategory: "Gaming Recipe",
+          recipeCuisine: "Grow a Garden",
+          recipeIngredient: recipe.ingredients,
+          recipeInstructions: [
+            `Gather ingredients: ${recipe.ingredients.join(", ")}`,
+            `Follow the cooking process in Grow a Garden game`,
+            `Complete cooking to obtain ${recipe.title}`,
+          ],
+        },
+      })),
+    },
+  };
+
   return (
-    <div
-      className="min-h-screen game-bg"
-      style={{
-        backgroundImage: `
-        linear-gradient(45deg, #1a3d2e 25%, transparent 25%), 
-        linear-gradient(-45deg, #1a3d2e 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #1a3d2e 75%), 
-        linear-gradient(-45deg, transparent 75%, #1a3d2e 75%)
-      `,
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-      }}
-    >
-      <Header />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div
+        className="min-h-screen game-bg"
+        style={{
+          backgroundImage: `
+          linear-gradient(45deg, #1a3d2e 25%, transparent 25%), 
+          linear-gradient(-45deg, #1a3d2e 25%, transparent 25%), 
+          linear-gradient(45deg, transparent 75%, #1a3d2e 75%), 
+          linear-gradient(-45deg, transparent 75%, #1a3d2e 75%)
+        `,
+          backgroundSize: "20px 20px",
+          backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+        }}
+      >
+        <Header />
 
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Search Section */}
-        <div className="mb-6">
-          <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-400 tech-text-glow" />
-            <input
-              type="text"
-              placeholder="Search recipes and ingredien"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 tech-border rounded-none bg-green-900 text-green-100 text-lg font-mono focus:outline-none focus:tech-glow-sm placeholder-green-400"
-              style={{ imageRendering: "pixelated" }}
-            />
-          </div>
-
-          {/* Rarity Filters */}
-          <div className="flex gap-2 mb-4">
-            {rarityFilters.map((rarity) => (
-              <button
-                key={rarity}
-                onClick={() => setSelectedRarity(rarity)}
-                className={`px-4 py-2 tech-border font-mono text-sm ${
-                  selectedRarity === rarity
-                    ? "bg-green-600 text-green-100 tech-glow-sm"
-                    : "bg-green-900 text-green-200 hover:bg-green-800 hover:tech-glow-sm"
-                }`}
-                style={{ imageRendering: "pixelated" }}
-              >
-                {rarity}
-              </button>
-            ))}
-          </div>
-
-          {/* Results Banner */}
-          <div className="flex items-center gap-2 mb-6">
-            <ChefHat className="h-4 w-4 text-green-400 tech-text-glow" />
-            <span className="text-sm font-mono text-green-200">
-              Showing {filteredRecipes.length} of {pixelRecipes.length} recipes
-            </span>
-          </div>
-        </div>
-
-        {/* Recipe Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredRecipes.map((recipe) => (
-            <div
-              key={recipe.id}
-              className="tech-gradient border-2 p-4 hover:tech-glow transition-all flex flex-col h-full tech-border"
-              style={{ imageRendering: "pixelated" }}
-            >
-              {/* Recipe Icon */}
-              <div className="text-center mb-4">
-                <div
-                  className="text-6xl mb-2"
-                  style={{ imageRendering: "pixelated" }}
-                >
-                  {recipe.icon}
-                </div>
-                <h3 className="text-xl font-bold font-mono game-text mb-1 tech-text-glow">
-                  {recipe.title}
-                </h3>
-                {recipe.cookTime && (
-                  <p className="text-sm text-green-100 font-mono">
-                    {recipe.cookTime}
-                  </p>
-                )}
-              </div>
-
-              {/* Rarity Badge */}
-              <div className="mb-3">
-                <span
-                  className={`px-3 py-1 text-xs font-mono text-white ${recipe.rarityColor}`}
-                >
-                  {recipe.rarity}
-                </span>
-              </div>
-
-              {/* Main Recipe */}
-              <div className="mb-3">
-                <p className="text-sm font-mono text-green-200 mb-2">
-                  <strong>Main Recipe:</strong>
-                </p>
-                <p className="text-sm font-mono text-green-100">
-                  {recipe.mainRecipe}
-                </p>
-                <p className="text-xs font-mono text-green-300 mt-1">
-                  {recipe.alternativeRecipes}
-                </p>
-              </div>
-
-              {/* Ingredients */}
-              <div className="mb-4 flex-grow">
-                <div className="flex flex-wrap gap-1">
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-green-800 border border-green-500 text-xs font-mono text-green-200 tech-border"
-                    >
-                      {ingredient}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Recipe Info */}
-              <div className="mt-auto">
-                <RecipeLink href={`/recipes/${recipe.id}`}>
-                  <div className="w-full bg-green-700 hover:bg-green-600 text-green-100 font-mono text-sm py-2 tech-border rounded-none text-center cursor-pointer transition-all hover:tech-glow-sm">
-                    {recipe.variants} Variants Available
-                  </div>
-                </RecipeLink>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Key Features Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
-              Key Features
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Instant Search */}
-            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
-              <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
-                Instant Search
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Find recipes by name or ingredient within milliseconds.
-              </p>
-            </div>
-
-            {/* Color-Coded Rarity */}
-            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
-              <div className="text-4xl mb-4">🌈</div>
-              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
-                Color-Coded Rarity
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Instantly spot rare gems, Divine, Mythical and more.
-              </p>
-            </div>
-
-            {/* Authentic Pixel Art */}
-            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
-              <div className="text-4xl mb-4">🖼️</div>
-              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
-                Authentic Pixel Art
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                UI mimics classic sandbox-game crafting tables.
-              </p>
-            </div>
-
-            {/* Responsive Layout */}
-            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
-              <div className="text-4xl mb-4">📱</div>
-              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
-                Responsive Layout
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Smooth experience on mobile, tablet and desktop.
-              </p>
-            </div>
-
-            {/* Blazing Performance */}
-            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
-              <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
-                Blazing Performance
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Static generation + Vercel Edge deliver LCP &lt; 2.0s.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Trending Recipes Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
-              Trending Recipes
-            </h2>
-            <p className="text-lg text-green-100 font-mono">
-              The most-cooked dishes right now- click any card to view full
-              variants.
+        {/* Main Content */}
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          {/* Hero Section */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold game-text mb-4 font-mono tech-text-glow">
+              Grow a Garden Recipe Guide 2024
+            </h1>
+            <p className="text-xl md:text-2xl text-green-200 mb-6 font-mono">
+              Master Every Recipe • Complete Ingredient Database • Rarity Guide
+            </p>
+            <p className="text-lg text-green-300 max-w-4xl mx-auto font-mono">
+              The ultimate Grow a Garden cooking guide for US gamers. Find all
+              32+ recipes, ingredient combinations, cooking times, and rarity
+              information. Perfect for farming game enthusiasts and cooking
+              simulator fans.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pixelRecipes.slice(0, 4).map((recipe) => (
+          {/* Search Section */}
+          <div className="mb-6">
+            <div className="relative mb-4">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-400 tech-text-glow" />
+              <input
+                type="text"
+                placeholder="Search Grow a Garden recipes and ingredients..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 tech-border rounded-none bg-green-900 text-green-100 text-lg font-mono focus:outline-none focus:tech-glow-sm placeholder-green-400"
+                style={{ imageRendering: "pixelated" }}
+                aria-label="Search Grow a Garden recipes"
+              />
+            </div>
+
+            {/* Rarity Filters */}
+            <div className="flex gap-2 mb-4">
+              {rarityFilters.map((rarity) => (
+                <button
+                  key={rarity}
+                  onClick={() => setSelectedRarity(rarity)}
+                  className={`px-4 py-2 tech-border font-mono text-sm ${
+                    selectedRarity === rarity
+                      ? "bg-green-600 text-green-100 tech-glow-sm"
+                      : "bg-green-900 text-green-200 hover:bg-green-800 hover:tech-glow-sm"
+                  }`}
+                  style={{ imageRendering: "pixelated" }}
+                >
+                  {rarity}
+                </button>
+              ))}
+            </div>
+
+            {/* Results Banner */}
+            <div className="flex items-center gap-2 mb-6">
+              <ChefHat className="h-4 w-4 text-green-400 tech-text-glow" />
+              <span className="text-sm font-mono text-green-200">
+                Showing {filteredRecipes.length} of {pixelRecipes.length}{" "}
+                recipes
+              </span>
+            </div>
+          </div>
+
+          {/* Recipe Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredRecipes.map((recipe) => (
               <div
                 key={recipe.id}
-                className="tech-gradient border-2 p-4 text-center hover:tech-glow transition-all cursor-pointer tech-border"
+                className="tech-gradient border-2 p-4 hover:tech-glow transition-all flex flex-col h-full tech-border"
                 style={{ imageRendering: "pixelated" }}
               >
-                <div className="text-4xl mb-3">{recipe.icon}</div>
-                <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
-                  {recipe.title}
-                </h3>
-                <div className="mb-2">
+                {/* Recipe Icon */}
+                <div className="text-center mb-4">
+                  <div
+                    className="text-6xl mb-2"
+                    style={{ imageRendering: "pixelated" }}
+                  >
+                    {recipe.icon}
+                  </div>
+                  <h3 className="text-xl font-bold font-mono game-text mb-1 tech-text-glow">
+                    {recipe.title}
+                  </h3>
+                  {recipe.cookTime && (
+                    <p className="text-sm text-green-100 font-mono">
+                      {recipe.cookTime}
+                    </p>
+                  )}
+                </div>
+
+                {/* Rarity Badge */}
+                <div className="mb-3">
                   <span
-                    className={`px-2 py-1 text-xs font-mono text-white ${recipe.rarityColor}`}
+                    className={`px-3 py-1 text-xs font-mono text-white ${recipe.rarityColor}`}
                   >
                     {recipe.rarity}
                   </span>
                 </div>
-                <p className="text-sm text-green-100 font-mono mb-1">
-                  {recipe.variants} variant{recipe.variants !== 1 ? "s" : ""}
-                </p>
-                {recipe.cookTime && (
-                  <p className="text-sm text-green-100 font-mono">
-                    {recipe.cookTime}
+
+                {/* Main Recipe */}
+                <div className="mb-3">
+                  <p className="text-sm font-mono text-green-200 mb-2">
+                    <strong>Main Recipe:</strong>
                   </p>
-                )}
+                  <p className="text-sm font-mono text-green-100">
+                    {recipe.mainRecipe}
+                  </p>
+                  <p className="text-xs font-mono text-green-300 mt-1">
+                    {recipe.alternativeRecipes}
+                  </p>
+                </div>
+
+                {/* Ingredients */}
+                <div className="mb-4 flex-grow">
+                  <div className="flex flex-wrap gap-1">
+                    {recipe.ingredients.map((ingredient, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-green-800 border border-green-500 text-xs font-mono text-green-200 tech-border"
+                      >
+                        {ingredient}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Recipe Info */}
+                <div className="mt-auto">
+                  <RecipeLink href={`/recipes/${recipe.id}`}>
+                    <div className="w-full bg-green-700 hover:bg-green-600 text-green-100 font-mono text-sm py-2 tech-border rounded-none text-center cursor-pointer transition-all hover:tech-glow-sm">
+                      {recipe.variants} Variants Available
+                    </div>
+                  </RecipeLink>
+                </div>
               </div>
             ))}
           </div>
-        </section>
 
-        {/* Rarity Guide Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
-              Rarity Guide
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Premium Grade */}
-            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
-              <h3 className="text-lg font-bold text-purple-400 mb-2 font-mono">
-                ◆ Premium Grade
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Highest quality-requires rare crops and grants maximum garden
-                XP.
+          {/* Key Features Section */}
+          <section className="py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
+                Why Choose Our Grow a Garden Recipe Guide?
+              </h2>
+              <p className="text-lg text-green-300 max-w-3xl mx-auto font-mono">
+                The most comprehensive and up-to-date Grow a Garden cooking
+                database for American gamers
               </p>
             </div>
 
-            {/* Divine */}
-            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
-              <h3 className="text-lg font-bold text-orange-400 mb-2 font-mono">
-                Divine
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Premium dishes that boost energy and growth speed.
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Instant Search */}
+              <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
+                <div className="text-4xl mb-4">🔍</div>
+                <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
+                  Instant Recipe Search
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Find any Grow a Garden recipe by name, ingredient, or rarity
+                  instantly. Perfect for quick reference during gameplay.
+                </p>
+              </div>
+
+              {/* Color-Coded Rarity */}
+              <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
+                <div className="text-4xl mb-4">🌈</div>
+                <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
+                  Complete Rarity System
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Master all 7 rarity levels: Common, Rare, Epic, Legendary,
+                  Divine, Mythical, and Prismatic recipes.
+                </p>
+              </div>
+
+              {/* Authentic Pixel Art */}
+              <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
+                <div className="text-4xl mb-4">🖼️</div>
+                <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
+                  Authentic Pixel Art
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  UI mimics classic sandbox-game crafting tables.
+                </p>
+              </div>
+
+              {/* Responsive Layout */}
+              <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
+                <div className="text-4xl mb-4">📱</div>
+                <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
+                  Responsive Layout
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Smooth experience on mobile, tablet and desktop.
+                </p>
+              </div>
+
+              {/* Blazing Performance */}
+              <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
+                <div className="text-4xl mb-4">⚡</div>
+                <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
+                  Blazing Performance
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Static generation + Vercel Edge deliver LCP &lt; 2.0s.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Trending Recipes Section */}
+          <section className="py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
+                Trending Recipes
+              </h2>
+              <p className="text-lg text-green-100 font-mono">
+                The most-cooked dishes right now- click any card to view full
+                variants.
               </p>
             </div>
 
-            {/* Mythical */}
-            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
-              <h3 className="text-lg font-bold text-red-400 mb-2 font-mono">
-                Mythical
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Hard-to-find combos with unique visual effects.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {pixelRecipes.slice(0, 4).map((recipe) => (
+                <div
+                  key={recipe.id}
+                  className="tech-gradient border-2 p-4 text-center hover:tech-glow transition-all cursor-pointer tech-border"
+                  style={{ imageRendering: "pixelated" }}
+                >
+                  <div className="text-4xl mb-3">{recipe.icon}</div>
+                  <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
+                    {recipe.title}
+                  </h3>
+                  <div className="mb-2">
+                    <span
+                      className={`px-2 py-1 text-xs font-mono text-white ${recipe.rarityColor}`}
+                    >
+                      {recipe.rarity}
+                    </span>
+                  </div>
+                  <p className="text-sm text-green-100 font-mono mb-1">
+                    {recipe.variants} variant{recipe.variants !== 1 ? "s" : ""}
+                  </p>
+                  {recipe.cookTime && (
+                    <p className="text-sm text-green-100 font-mono">
+                      {recipe.cookTime}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Rarity Guide Section */}
+          <section className="py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
+                Rarity Guide
+              </h2>
             </div>
 
-            {/* Legendary */}
-            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
-              <h3 className="text-lg font-bold text-orange-400 mb-2 font-mono">
-                Legendary
-              </h3>
-              <p className="text-sm text-green-100 font-mono">
-                Balanced classics suitable for mid-game progression.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Premium Grade */}
+              <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+                <h3 className="text-lg font-bold text-purple-400 mb-2 font-mono">
+                  ◆ Premium Grade
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Highest quality-requires rare crops and grants maximum garden
+                  XP.
+                </p>
+              </div>
+
+              {/* Divine */}
+              <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+                <h3 className="text-lg font-bold text-orange-400 mb-2 font-mono">
+                  Divine
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Premium dishes that boost energy and growth speed.
+                </p>
+              </div>
+
+              {/* Mythical */}
+              <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+                <h3 className="text-lg font-bold text-red-400 mb-2 font-mono">
+                  Mythical
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Hard-to-find combos with unique visual effects.
+                </p>
+              </div>
+
+              {/* Legendary */}
+              <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+                <h3 className="text-lg font-bold text-orange-400 mb-2 font-mono">
+                  Legendary
+                </h3>
+                <p className="text-sm text-green-100 font-mono">
+                  Balanced classics suitable for mid-game progression.
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </>
   );
 }
