@@ -9,16 +9,15 @@ import { ArrowLeft } from "lucide-react";
 import { categories, recipes } from "@/lib/data";
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = categories.find((c) => c.id === params.id);
-  const categoryRecipes = recipes.filter(
-    (recipe) => recipe.category === params.id
-  );
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { id } = await params;
+  const category = categories.find((c) => c.id === id);
+  const categoryRecipes = recipes.filter((recipe) => recipe.category === id);
 
   if (!category) {
     notFound();
@@ -94,7 +93,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {categories
-              .filter((c) => c.id !== params.id)
+              .filter((c) => c.id !== id)
               .slice(0, 3)
               .map((relatedCategory) => (
                 <Link

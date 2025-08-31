@@ -106,7 +106,7 @@ export const recipes: Recipe[] = [
     title: "Fresh Basil Pesto Pasta",
     description: "Homemade pesto using fresh basil from your garden",
     image:
-      "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=600&h=400&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&h=400&fit=crop&crop=center",
     prepTime: "15 mins",
     cookTime: "10 mins",
     servings: 4,

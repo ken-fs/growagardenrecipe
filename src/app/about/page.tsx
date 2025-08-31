@@ -13,10 +13,10 @@ export default function AboutPage() {
         {/* Page Header */}
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            About Grow A Garden Recipe
+            About Grow a Garden Recipes
           </h1>
           <p className="text-xl text-gray-600">
-            Connecting garden enthusiasts with delicious, fresh recipes
+            Complete recipe database for Grow a Garden game
           </p>
         </div>
 
@@ -32,12 +32,13 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="text-lg text-gray-600 text-center leading-relaxed">
-              At Grow A Garden Recipe, we believe that the best meals start with
-              the freshest ingredients. Our mission is to inspire and empower
-              home gardeners to create delicious, nutritious meals using the
-              fruits, vegetables, and herbs they grow in their own gardens.
-              We're passionate about sustainable living, healthy eating, and the
-              joy that comes from growing your own food.
+              At Grow a Garden Recipes, we provide the most comprehensive
+              database of cooking recipes for the Grow a Garden game. Our
+              mission is to help players discover every possible recipe
+              combination, complete with rarity information, ingredient
+              requirements, and cooking times. We're passionate about gaming,
+              pixel art, and helping players master the cooking system in Grow a
+              Garden.
             </p>
           </CardContent>
         </Card>
@@ -50,11 +51,11 @@ export default function AboutPage() {
                 <Heart className="h-6 w-6 text-green-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Fresh & Healthy
+                Complete Database
               </h3>
               <p className="text-gray-600 text-sm">
-                Every recipe is designed to highlight the natural flavors and
-                nutritional benefits of fresh garden produce.
+                Every recipe in the Grow a Garden game with accurate rarity
+                information, ingredient combinations, and cooking times.
               </p>
             </CardContent>
           </Card>
@@ -65,11 +66,11 @@ export default function AboutPage() {
                 <Users className="h-6 w-6 text-green-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Community Driven
+                Pixel Art UI
               </h3>
               <p className="text-gray-600 text-sm">
-                Our recipes come from a community of passionate gardeners and
-                home cooks who love sharing their knowledge.
+                Beautiful pixel-art style interface that matches the game's
+                aesthetic with instant search and fully responsive design.
               </p>
             </CardContent>
           </Card>
@@ -80,11 +81,11 @@ export default function AboutPage() {
                 <Award className="h-6 w-6 text-green-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Quality First
+                Game Accurate
               </h3>
               <p className="text-gray-600 text-sm">
-                We carefully curate and test every recipe to ensure it meets our
-                high standards for taste and nutrition.
+                All recipe data is verified against the actual game to ensure
+                accuracy and help players achieve the best cooking results.
               </p>
             </CardContent>
           </Card>
@@ -96,25 +97,25 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h2>
             <div className="prose prose-lg text-gray-600">
               <p className="mb-4">
-                Grow A Garden Recipe was born from a simple observation: many
-                home gardeners grow beautiful, fresh produce but struggle to
-                find creative and delicious ways to use their harvest. We saw an
-                opportunity to bridge the gap between growing food and cooking
-                with it.
+                Grow a Garden Recipes was created to solve a common problem:
+                players of the Grow a Garden game needed a comprehensive
+                resource to discover all possible cooking recipes and their
+                requirements. We saw an opportunity to create the ultimate
+                recipe database for the game.
               </p>
               <p className="mb-4">
-                What started as a small collection of family recipes has grown
-                into a comprehensive resource for garden-to-table cooking. Our
-                team of experienced gardeners, chefs, and food enthusiasts work
-                together to create recipes that celebrate the natural flavors of
-                homegrown ingredients.
+                What started as a simple list of recipes has grown into a
+                comprehensive database with rarity information, ingredient
+                combinations, cooking times, and a beautiful pixel-art
+                interface. Our team of dedicated gamers and developers work
+                together to ensure every recipe is accurate and up-to-date.
               </p>
               <p>
-                Today, we're proud to serve a growing community of gardeners,
-                home cooks, and anyone who appreciates the connection between
-                fresh ingredients and great food. Whether you're a seasoned
-                gardener or just starting your first herb garden, we're here to
-                help you make the most of your harvest.
+                Today, we're proud to serve the Grow a Garden community with the
+                most complete and accurate recipe database available. Whether
+                you're a new player learning the cooking system or a veteran
+                looking for rare recipes, we're here to help you master the art
+                of cooking in Grow a Garden.
               </p>
             </div>
           </CardContent>
@@ -129,12 +130,12 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Have a Recipe to Share?
+                  Found a Missing Recipe?
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  We're always looking for new recipes from our community. If
-                  you have a favorite garden recipe you'd like to share, we'd
-                  love to hear from you!
+                  We're always updating our database with new recipes. If you've
+                  discovered a recipe that's not in our database, we'd love to
+                  hear from you!
                 </p>
                 <a
                   href="mailto:recipes@growagardenrecipe.net"
@@ -149,7 +150,8 @@ export default function AboutPage() {
                 </h3>
                 <p className="text-gray-600 mb-4">
                   We value your feedback and are here to help with any questions
-                  you might have about our recipes or gardening tips.
+                  you might have about our recipe database or the Grow a Garden
+                  game.
                 </p>
                 <a
                   href="mailto:hello@growagardenrecipe.net"
