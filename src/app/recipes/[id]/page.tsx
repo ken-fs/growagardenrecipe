@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { CopyButton } from "./CopyButton";
+import { BackButton } from "./BackButton";
 
 // 像素艺术风格的食谱数据 - 包含详细的变体信息
 const pixelRecipes = [
@@ -4030,7 +4031,7 @@ export default async function RecipeDetailPage({
   const recipe = pixelRecipes.find((r) => r.id === id);
 
   if (!recipe) {
-  return (
+    return (
       <div
         className="min-h-screen bg-green-100"
         style={{
@@ -4055,9 +4056,9 @@ export default async function RecipeDetailPage({
               className="inline-block bg-blue-600 text-white px-6 py-3 border-2 border-gray-800 font-mono hover:bg-blue-700"
             >
               ← Back to Recipes
-        </Link>
-            </div>
-              </div>
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
@@ -4083,62 +4084,48 @@ export default async function RecipeDetailPage({
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white font-mono">
               Ψq Grow a Garden
-              </h1>
+            </h1>
             <p className="text-white font-mono text-sm">Recipe Collection</p>
-                </div>
-                </div>
-              </div>
+          </div>
+        </div>
+      </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Back Button */}
         <div className="mb-6">
-          <Link
-            href="/"
-            className="inline-block bg-gray-600 text-white px-4 py-2 border-2 border-gray-800 font-mono hover:bg-gray-700"
-            onClick={() => {
-              // 尝试返回到之前的位置
-              const scrollPosition = sessionStorage.getItem('scrollPosition');
-              if (scrollPosition) {
-                setTimeout(() => {
-                  window.scrollTo(0, parseInt(scrollPosition));
-                }, 100);
-              }
-            }}
-          >
-            ← Back to Recipes
-          </Link>
-            </div>
+          <BackButton />
+        </div>
 
         {/* Main Recipe Info */}
         <div className="bg-white border-4 border-gray-800 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-3xl font-bold text-gray-900 font-mono">
               {recipe.title}
-                </h2>
+            </h2>
             <span
               className={`px-4 py-2 text-white font-mono text-sm border-2 border-gray-800 ${recipe.rarityColor}`}
             >
               {recipe.rarity}
-                      </span>
+            </span>
           </div>
           <p className="text-gray-700 font-mono text-lg">
             {recipe.description}
           </p>
-          </div>
+        </div>
 
         {/* Recipe Variants */}
         <div className="mb-6">
           <h3 className="text-2xl font-bold text-gray-900 mb-4 font-mono">
             Recipe Variants
-                  </h3>
+          </h3>
           <div className="space-y-4">
             {recipe.variants.map((variant, index) => (
               <VariantCard key={index} variant={variant} />
             ))}
-                    </div>
-                    </div>
-                    </div>
-                      </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -4164,13 +4151,13 @@ function VariantCard({ variant }: VariantCardProps) {
             >
               {variant.rarity}
             </span>
-                  </div>
+          </div>
           <p className="text-gray-800 font-mono text-sm">
             {variant.ingredients.join(" + ")}
           </p>
-            </div>
+        </div>
         <CopyButton ingredients={variant.ingredients} />
-          </div>
+      </div>
     </div>
   );
 }

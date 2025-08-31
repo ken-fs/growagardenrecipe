@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { RecipeLink } from "@/components/RecipeLink";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Search, ChefHat } from "lucide-react";
@@ -625,11 +626,11 @@ export default function Home() {
 
               {/* Recipe Info */}
               <div className="mt-auto">
-                <Link href={`/recipes/${recipe.id}`}>
+                <RecipeLink href={`/recipes/${recipe.id}`}>
                   <div className="w-full bg-blue-600 hover:bg-blue-700 text-white font-mono text-sm py-2 border-2 border-gray-800 rounded-none text-center cursor-pointer transition-colors">
                     {recipe.variants} Variants Available
                   </div>
-                </Link>
+                </RecipeLink>
               </div>
             </div>
           ))}
