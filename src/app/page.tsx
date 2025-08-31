@@ -505,13 +505,13 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen game-bg"
       style={{
         backgroundImage: `
-        linear-gradient(45deg, #90EE90 25%, transparent 25%), 
-        linear-gradient(-45deg, #90EE90 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #90EE90 75%), 
-        linear-gradient(-45deg, transparent 75%, #90EE90 75%)
+        linear-gradient(45deg, #1a3d2e 25%, transparent 25%), 
+        linear-gradient(-45deg, #1a3d2e 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #1a3d2e 75%), 
+        linear-gradient(-45deg, transparent 75%, #1a3d2e 75%)
       `,
         backgroundSize: "20px 20px",
         backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
@@ -524,13 +524,13 @@ export default function Home() {
         {/* Search Section */}
         <div className="mb-6">
           <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-400 tech-text-glow" />
             <input
               type="text"
               placeholder="Search recipes and ingredien"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border-2 border-gray-800 rounded-none bg-white text-lg font-mono focus:outline-none focus:border-green-600"
+              className="w-full pl-10 pr-4 py-3 tech-border rounded-none bg-green-900 text-green-100 text-lg font-mono focus:outline-none focus:tech-glow-sm placeholder-green-400"
               style={{ imageRendering: "pixelated" }}
             />
           </div>
@@ -541,10 +541,10 @@ export default function Home() {
               <button
                 key={rarity}
                 onClick={() => setSelectedRarity(rarity)}
-                className={`px-4 py-2 border-2 border-gray-800 font-mono text-sm ${
+                className={`px-4 py-2 tech-border font-mono text-sm ${
                   selectedRarity === rarity
-                    ? "bg-green-600 text-white"
-                    : "bg-gray-300 text-gray-800 hover:bg-gray-400"
+                    ? "bg-green-600 text-green-100 tech-glow-sm"
+                    : "bg-green-900 text-green-200 hover:bg-green-800 hover:tech-glow-sm"
                 }`}
                 style={{ imageRendering: "pixelated" }}
               >
@@ -555,8 +555,8 @@ export default function Home() {
 
           {/* Results Banner */}
           <div className="flex items-center gap-2 mb-6">
-            <ChefHat className="h-4 w-4 text-green-600" />
-            <span className="text-sm font-mono text-gray-800">
+            <ChefHat className="h-4 w-4 text-green-400 tech-text-glow" />
+            <span className="text-sm font-mono text-green-200">
               Showing {filteredRecipes.length} of {pixelRecipes.length} recipes
             </span>
           </div>
@@ -567,7 +567,7 @@ export default function Home() {
           {filteredRecipes.map((recipe) => (
             <div
               key={recipe.id}
-              className="bg-white border-2 border-gray-800 p-4 hover:shadow-lg transition-shadow flex flex-col h-full"
+              className="tech-gradient border-2 p-4 hover:tech-glow transition-all flex flex-col h-full tech-border"
               style={{ imageRendering: "pixelated" }}
             >
               {/* Recipe Icon */}
@@ -578,11 +578,11 @@ export default function Home() {
                 >
                   {recipe.icon}
                 </div>
-                <h3 className="text-xl font-bold font-mono text-gray-900 mb-1">
+                <h3 className="text-xl font-bold font-mono game-text mb-1 tech-text-glow">
                   {recipe.title}
                 </h3>
                 {recipe.cookTime && (
-                  <p className="text-sm text-gray-600 font-mono">
+                  <p className="text-sm text-green-100 font-mono">
                     {recipe.cookTime}
                   </p>
                 )}
@@ -599,13 +599,13 @@ export default function Home() {
 
               {/* Main Recipe */}
               <div className="mb-3">
-                <p className="text-sm font-mono text-gray-800 mb-2">
+                <p className="text-sm font-mono text-green-200 mb-2">
                   <strong>Main Recipe:</strong>
                 </p>
-                <p className="text-sm font-mono text-gray-700">
+                <p className="text-sm font-mono text-green-100">
                   {recipe.mainRecipe}
                 </p>
-                <p className="text-xs font-mono text-gray-500 mt-1">
+                <p className="text-xs font-mono text-green-300 mt-1">
                   {recipe.alternativeRecipes}
                 </p>
               </div>
@@ -616,7 +616,7 @@ export default function Home() {
                   {recipe.ingredients.map((ingredient, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-gray-200 border border-gray-400 text-xs font-mono text-gray-800"
+                      className="px-2 py-1 bg-green-800 border border-green-500 text-xs font-mono text-green-200 tech-border"
                     >
                       {ingredient}
                     </span>
@@ -627,7 +627,7 @@ export default function Home() {
               {/* Recipe Info */}
               <div className="mt-auto">
                 <RecipeLink href={`/recipes/${recipe.id}`}>
-                  <div className="w-full bg-blue-600 hover:bg-blue-700 text-white font-mono text-sm py-2 border-2 border-gray-800 rounded-none text-center cursor-pointer transition-colors">
+                  <div className="w-full bg-green-700 hover:bg-green-600 text-green-100 font-mono text-sm py-2 tech-border rounded-none text-center cursor-pointer transition-all hover:tech-glow-sm">
                     {recipe.variants} Variants Available
                   </div>
                 </RecipeLink>
@@ -639,63 +639,63 @@ export default function Home() {
         {/* Key Features Section */}
         <section className="py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-mono">
+            <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
               Key Features
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Instant Search */}
-            <div className="bg-white border-2 border-gray-800 p-6 text-center">
+            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
               <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 font-mono">
+              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
                 Instant Search
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Find recipes by name or ingredient within milliseconds.
               </p>
             </div>
 
             {/* Color-Coded Rarity */}
-            <div className="bg-white border-2 border-gray-800 p-6 text-center">
+            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
               <div className="text-4xl mb-4">🌈</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 font-mono">
+              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
                 Color-Coded Rarity
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Instantly spot rare gems, Divine, Mythical and more.
               </p>
             </div>
 
             {/* Authentic Pixel Art */}
-            <div className="bg-white border-2 border-gray-800 p-6 text-center">
+            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
               <div className="text-4xl mb-4">🖼️</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 font-mono">
+              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
                 Authentic Pixel Art
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 UI mimics classic sandbox-game crafting tables.
               </p>
             </div>
 
             {/* Responsive Layout */}
-            <div className="bg-white border-2 border-gray-800 p-6 text-center">
+            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
               <div className="text-4xl mb-4">📱</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 font-mono">
+              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
                 Responsive Layout
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Smooth experience on mobile, tablet and desktop.
               </p>
             </div>
 
             {/* Blazing Performance */}
-            <div className="bg-white border-2 border-gray-800 p-6 text-center">
+            <div className="tech-gradient border-2 p-6 text-center tech-border hover:tech-glow-sm transition-all">
               <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 font-mono">
+              <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
                 Blazing Performance
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Static generation + Vercel Edge deliver LCP &lt; 2.0s.
               </p>
             </div>
@@ -705,10 +705,10 @@ export default function Home() {
         {/* Trending Recipes Section */}
         <section className="py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-mono">
+            <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
               Trending Recipes
             </h2>
-            <p className="text-lg text-gray-600 font-mono">
+            <p className="text-lg text-green-100 font-mono">
               The most-cooked dishes right now- click any card to view full
               variants.
             </p>
@@ -718,11 +718,11 @@ export default function Home() {
             {pixelRecipes.slice(0, 4).map((recipe) => (
               <div
                 key={recipe.id}
-                className="bg-white border-2 border-gray-800 p-4 text-center hover:shadow-lg transition-shadow cursor-pointer"
+                className="tech-gradient border-2 p-4 text-center hover:tech-glow transition-all cursor-pointer tech-border"
                 style={{ imageRendering: "pixelated" }}
               >
                 <div className="text-4xl mb-3">{recipe.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-mono">
+                <h3 className="text-lg font-bold game-text mb-2 font-mono tech-text-glow">
                   {recipe.title}
                 </h3>
                 <div className="mb-2">
@@ -732,11 +732,11 @@ export default function Home() {
                     {recipe.rarity}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 font-mono mb-1">
+                <p className="text-sm text-green-100 font-mono mb-1">
                   {recipe.variants} variant{recipe.variants !== 1 ? "s" : ""}
                 </p>
                 {recipe.cookTime && (
-                  <p className="text-sm text-gray-600 font-mono">
+                  <p className="text-sm text-green-100 font-mono">
                     {recipe.cookTime}
                   </p>
                 )}
@@ -748,49 +748,49 @@ export default function Home() {
         {/* Rarity Guide Section */}
         <section className="py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-mono">
+            <h2 className="text-3xl font-bold game-text mb-4 font-mono tech-text-glow">
               Rarity Guide
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Premium Grade */}
-            <div className="bg-white border-2 border-gray-800 p-6">
-              <h3 className="text-lg font-bold text-purple-600 mb-2 font-mono">
+            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+              <h3 className="text-lg font-bold text-purple-400 mb-2 font-mono">
                 ◆ Premium Grade
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Highest quality-requires rare crops and grants maximum garden
                 XP.
               </p>
             </div>
 
             {/* Divine */}
-            <div className="bg-white border-2 border-gray-800 p-6">
-              <h3 className="text-lg font-bold text-orange-500 mb-2 font-mono">
+            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+              <h3 className="text-lg font-bold text-orange-400 mb-2 font-mono">
                 Divine
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Premium dishes that boost energy and growth speed.
               </p>
             </div>
 
             {/* Mythical */}
-            <div className="bg-white border-2 border-gray-800 p-6">
-              <h3 className="text-lg font-bold text-red-600 mb-2 font-mono">
+            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+              <h3 className="text-lg font-bold text-red-400 mb-2 font-mono">
                 Mythical
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Hard-to-find combos with unique visual effects.
               </p>
             </div>
 
             {/* Legendary */}
-            <div className="bg-white border-2 border-gray-800 p-6">
-              <h3 className="text-lg font-bold text-orange-600 mb-2 font-mono">
+            <div className="tech-gradient border-2 p-6 tech-border hover:tech-glow-sm transition-all">
+              <h3 className="text-lg font-bold text-orange-400 mb-2 font-mono">
                 Legendary
               </h3>
-              <p className="text-sm text-gray-600 font-mono">
+              <p className="text-sm text-green-100 font-mono">
                 Balanced classics suitable for mid-game progression.
               </p>
             </div>

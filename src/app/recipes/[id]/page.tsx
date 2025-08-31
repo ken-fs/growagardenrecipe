@@ -4033,13 +4033,13 @@ export default async function RecipeDetailPage({
   if (!recipe) {
     return (
       <div
-        className="min-h-screen bg-green-100"
+        className="min-h-screen game-bg"
         style={{
           backgroundImage: `
-          linear-gradient(45deg, #90EE90 25%, transparent 25%), 
-          linear-gradient(-45deg, #90EE90 25%, transparent 25%), 
-          linear-gradient(45deg, transparent 75%, #90EE90 75%), 
-          linear-gradient(-45deg, transparent 75%, #90EE90 75%)
+          linear-gradient(45deg, #1a3d2e 25%, transparent 25%), 
+          linear-gradient(-45deg, #1a3d2e 25%, transparent 25%), 
+          linear-gradient(45deg, transparent 75%, #1a3d2e 75%), 
+          linear-gradient(-45deg, transparent 75%, #1a3d2e 75%)
         `,
           backgroundSize: "20px 20px",
           backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
@@ -4079,13 +4079,15 @@ export default async function RecipeDetailPage({
       }}
     >
       {/* Header */}
-      <div className="bg-green-800 border-b-4 border-gray-800">
+      <div className="bg-green-900 border-b-4 border-green-600 tech-glow">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-white font-mono">
+            <h1 className="text-2xl font-bold text-green-100 font-mono tech-text-glow">
               Ψq Grow a Garden
             </h1>
-            <p className="text-white font-mono text-sm">Recipe Collection</p>
+            <p className="text-green-200 font-mono text-sm">
+              Recipe Collection
+            </p>
           </div>
         </div>
       </div>
@@ -4097,25 +4099,25 @@ export default async function RecipeDetailPage({
         </div>
 
         {/* Main Recipe Info */}
-        <div className="bg-white border-4 border-gray-800 p-6 mb-6">
+        <div className="tech-gradient border-4 p-6 mb-6 tech-border tech-glow">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-3xl font-bold text-gray-900 font-mono">
+            <h2 className="text-3xl font-bold game-text font-mono tech-text-glow">
               {recipe.title}
             </h2>
             <span
-              className={`px-4 py-2 text-white font-mono text-sm border-2 border-gray-800 ${recipe.rarityColor}`}
+              className={`px-4 py-2 text-white font-mono text-sm border-2 border-green-500 ${recipe.rarityColor}`}
             >
               {recipe.rarity}
             </span>
           </div>
-          <p className="text-gray-700 font-mono text-lg">
+          <p className="text-green-200 font-mono text-lg">
             {recipe.description}
           </p>
         </div>
 
         {/* Recipe Variants */}
         <div className="mb-6">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4 font-mono">
+          <h3 className="text-2xl font-bold game-text mb-4 font-mono tech-text-glow">
             Recipe Variants
           </h3>
           <div className="space-y-4">
@@ -4142,17 +4144,17 @@ interface VariantCardProps {
 
 function VariantCard({ variant }: VariantCardProps) {
   return (
-    <div className="bg-white border-4 border-gray-800 p-4">
+    <div className="tech-gradient border-4 p-4 tech-border hover:tech-glow-sm transition-all">
       <div className="flex items-center justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-4 mb-2">
             <span
-              className={`px-3 py-1 text-white font-mono text-xs border-2 border-gray-800 ${variant.rarityColor}`}
+              className={`px-3 py-1 text-white font-mono text-xs border-2 border-green-500 ${variant.rarityColor}`}
             >
               {variant.rarity}
             </span>
           </div>
-          <p className="text-gray-800 font-mono text-sm">
+          <p className="text-green-200 font-mono text-sm">
             {variant.ingredients.join(" + ")}
           </p>
         </div>

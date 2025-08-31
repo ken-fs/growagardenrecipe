@@ -25,7 +25,7 @@ export function BackButton() {
   return (
     <Link
       href="/"
-      className="inline-block bg-gray-600 text-white px-4 py-2 border-2 border-gray-800 font-mono hover:bg-gray-700"
+      className="inline-block bg-green-700 text-green-100 px-4 py-2 tech-border font-mono hover:bg-green-600 hover:tech-glow-sm transition-all"
       onClick={handleClick}
     >
       ← Back to Recipes

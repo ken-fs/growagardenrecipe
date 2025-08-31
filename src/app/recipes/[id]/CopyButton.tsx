@@ -24,7 +24,7 @@ export function CopyButton({ ingredients }: CopyButtonProps) {
   return (
     <button
       onClick={handleCopy}
-      className="bg-gray-600 text-white px-4 py-2 border-2 border-gray-800 font-mono text-sm hover:bg-gray-700 flex items-center gap-2"
+      className="bg-green-700 text-green-100 px-4 py-2 tech-border font-mono text-sm hover:bg-green-600 hover:tech-glow-sm flex items-center gap-2 transition-all"
     >
       {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
       {copied ? "Copied!" : "Copy"}

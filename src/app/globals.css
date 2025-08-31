@@ -2,48 +2,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* 深色科技感绿色主题 - Grow a Garden 风格 */
+    --background: 120 15% 6%;           /* 深色科技绿背景 */
+    --foreground: 120 40% 95%;          /* 明亮科技绿文字 */
+    --card: 120 12% 8%;                 /* 深色科技卡片背景 */
+    --card-foreground: 120 40% 90%;     /* 明亮科技卡片文字 */
+    --popover: 120 12% 8%;              /* 深色科技弹出层背景 */
+    --popover-foreground: 120 40% 90%;  /* 明亮科技弹出层文字 */
+    --primary: 120 80% 35%;             /* 科技绿主要色 */
+    --primary-foreground: 120 40% 95%;  /* 明亮主要文字 */
+    --secondary: 120 15% 12%;           /* 深色次要背景 */
+    --secondary-foreground: 120 40% 85%; /* 明亮次要文字 */
+    --muted: 120 10% 15%;               /* 深色静音背景 */
+    --muted-foreground: 120 30% 65%;    /* 静音文字 */
+    --accent: 120 70% 40%;              /* 科技强调色 */
+    --accent-foreground: 120 40% 95%;   /* 明亮强调文字 */
+    --destructive: 0 70% 50%;           /* 危险色 */
+    --destructive-foreground: 120 40% 95%; /* 明亮危险文字 */
+    --border: 120 25% 20%;              /* 深色科技边框 */
+    --input: 120 12% 10%;               /* 深色输入框背景 */
+    --ring: 120 80% 35%;                /* 科技焦点环 */
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    
+    /* 深色科技游戏主题特殊颜色 */
+    --game-bg: 120 15% 6%;              /* 深色科技游戏背景 */
+    --game-card: 120 12% 8%;            /* 深色科技游戏卡片 */
+    --game-border: 120 30% 25%;         /* 深色科技游戏边框 */
+    --game-text: 120 40% 90%;           /* 明亮科技游戏文字 */
+    --game-accent: 120 70% 40%;         /* 科技游戏强调 */
+    --game-rare: 45 90% 55%;            /* 科技稀有物品金色 */
+    --game-epic: 280 80% 65%;           /* 科技史诗物品紫色 */
+    --game-legendary: 30 95% 60%;       /* 科技传说物品橙色 */
+    --tech-glow: 120 80% 50%;           /* 科技发光效果 */
+    --tech-shadow: 120 20% 5%;          /* 科技阴影 */
   }
 }
 
@@ -63,5 +54,78 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+  }
+  
+  /* 游戏主题工具类 */
+  .game-bg {
+    background-color: hsl(var(--game-bg));
+  }
+  
+  .game-card {
+    background-color: hsl(var(--game-card));
+    border-color: hsl(var(--game-border));
+  }
+  
+  .game-text {
+    color: hsl(var(--game-text));
+  }
+  
+  .game-accent {
+    background-color: hsl(var(--game-accent));
+  }
+  
+  .game-rare {
+    background-color: hsl(var(--game-rare));
+  }
+  
+  .game-epic {
+    background-color: hsl(var(--game-epic));
+  }
+  
+  .game-legendary {
+    background-color: hsl(var(--game-legendary));
+  }
+  
+  /* 像素艺术效果 */
+  .pixel-art {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+  
+  /* 游戏风格阴影 */
+  .game-shadow {
+    box-shadow: 4px 4px 0px hsl(var(--game-border));
+  }
+  
+  .game-shadow-sm {
+    box-shadow: 2px 2px 0px hsl(var(--game-border));
+  }
+  
+  /* 科技感效果 */
+  .tech-glow {
+    box-shadow: 0 0 20px hsl(var(--tech-glow) / 0.3);
+  }
+  
+  .tech-glow-sm {
+    box-shadow: 0 0 10px hsl(var(--tech-glow) / 0.2);
+  }
+  
+  .tech-border {
+    border: 1px solid hsl(var(--tech-glow) / 0.4);
+    box-shadow: 
+      inset 0 0 10px hsl(var(--tech-glow) / 0.1),
+      0 0 15px hsl(var(--tech-glow) / 0.2);
+  }
+  
+  .tech-gradient {
+    background: linear-gradient(135deg, 
+      hsl(var(--game-card)) 0%, 
+      hsl(var(--secondary)) 50%, 
+      hsl(var(--game-card)) 100%);
+  }
+  
+  .tech-text-glow {
+    text-shadow: 0 0 10px hsl(var(--tech-glow) / 0.5);
   }
 }
